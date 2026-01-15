@@ -5,7 +5,7 @@ import { usePuterStore } from "~/lib/puter";
 export const meta = () => {
   return [
     {
-      title: "CVInsight | Auth",
+      title: "RESUMIND | Auth",
     },
     {
       name: "description",
