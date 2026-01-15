@@ -20,7 +20,6 @@ const auth = () => {
   const next = location.search.split("next=")[1];
   const navigate = useNavigate();
 
-  console.log("next-->", next)
 
   useEffect(() => {
     if (auth.isAuthenticated) navigate(next);
