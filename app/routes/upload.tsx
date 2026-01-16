@@ -6,6 +6,22 @@ import { useNavigate } from "react-router";
 import { convertPdfToImage } from "~/lib/pdf2img";
 import { generateUUID } from "~/lib/utils";
 import { prepareInstructions } from "../../constants";
+import type { Route } from '../+types/root';
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    {
+      title: "Upload Resume – Get Instant AI Feedback | ResumeIQ",
+    },
+    {
+      name: "description",
+      content:
+        "Upload your resume to ResumeIQ and receive instant AI-powered scoring, ATS insights, and personalized improvement tips in seconds.",
+    },
+  ];
+}
+
+
 
 const Upload = () => {
     const { auth, isLoading, fs, ai, kv } = usePuterStore();

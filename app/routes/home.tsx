@@ -5,10 +5,16 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { usePuterStore } from "~/lib/puter";
 
-export function meta({ }: Route.MetaArgs) {
+export function meta({}: Route.MetaArgs) {
   return [
-    { title: "RESUMIND" },
-    { name: "description", content: "Smart feedback for your dream job!" },
+    {
+      title: "ResumeIQ – AI Resume Analysis, Scoring & Smart Feedback",
+    },
+    {
+      name: "description",
+      content:
+        "ResumeIQ analyzes your resume using AI to deliver instant scoring, strengths, weaknesses, and personalized improvement tips—so you can get hired faster.",
+    },
   ];
 }
 
@@ -32,7 +38,9 @@ export default function Home() {
 
       try {
         const resumes = (await kv.list("resume:*", true)) as KVItem[];
-        const parsedResumes = resumes?.map((resume) => JSON.parse(resume.value) as Resume);
+        const parsedResumes = resumes?.map(
+          (resume) => JSON.parse(resume.value) as Resume
+        );
         setResumes(parsedResumes || []);
       } catch (err) {
         console.error("Error loading resumes:", err);
@@ -44,7 +52,6 @@ export default function Home() {
 
     loadResumes();
   }, [auth.isAuthenticated, refreshToken]);
-
 
   return (
     <main className="bg-[url('/images/bg-main.svg')] bg-cover">
@@ -59,19 +66,19 @@ export default function Home() {
 
           {!loadingResumes && resumes.length === 0 ? (
             <h2>
-              Upload your resume and get instant insights to improve your chances.
+              Upload your resume and get instant insights to improve your
+              chances.
             </h2>
           ) : (
-            <h2>
-              Review your submissions and track AI feedback over time.
-            </h2>
+            <h2>Review your submissions and track AI feedback over time.</h2>
           )}
         </div>
 
         {/* Upload Button - Mobile Only */}
-        {!loadingResumes && resumes.length > 0 && <Link
-          to="/upload"
-          className="
+        {!loadingResumes && resumes.length > 0 && (
+          <Link
+            to="/upload"
+            className="
     inline-flex sm:hidden
     items-center justify-center gap-2
     rounded-full
@@ -84,10 +91,10 @@ export default function Home() {
     transition-all
     hover:scale-105 hover:shadow-xl
   "
-        >
-          Upload Resume
-        </Link>}
-
+          >
+            Upload Resume
+          </Link>
+        )}
 
         {/* LOADING */}
         {loadingResumes && (
@@ -104,7 +111,11 @@ export default function Home() {
         {!loadingResumes && resumes.length > 0 && (
           <div className="resumes-section mt-10">
             {resumes.map((resume) => (
-              <ResumeCard key={resume.id} resume={resume} onDelete={() => setRefreshToken(prev => prev + 1)} />
+              <ResumeCard
+                key={resume.id}
+                resume={resume}
+                onDelete={() => setRefreshToken((prev) => prev + 1)}
+              />
             ))}
           </div>
         )}
@@ -117,7 +128,6 @@ export default function Home() {
 
             {/* Card */}
             <div className="relative rounded-3xl bg-white/80 backdrop-blur-xl border border-white/30 p-10 text-center flex flex-col gap-5 shadow-xl">
-
               {/* Icon */}
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-cyan-400 text-white shadow-md">
                 <svg
@@ -143,8 +153,11 @@ export default function Home() {
 
               {/* Description */}
               <p className="text-dark-300 leading-relaxed">
-                Upload your resume to receive <span className="font-medium text-dark-500">AI-powered scoring</span>,
-                strengths, and personalized improvement suggestions.
+                Upload your resume to receive{" "}
+                <span className="font-medium text-dark-500">
+                  AI-powered scoring
+                </span>
+                , strengths, and personalized improvement suggestions.
               </p>
 
               {/* CTA */}
@@ -157,7 +170,6 @@ export default function Home() {
               </Link>
             </div>
           </div>
-
         )}
       </section>
     </main>

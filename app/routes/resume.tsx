@@ -6,8 +6,14 @@ import Summary from "~/components/Summary";
 import { usePuterStore } from "~/lib/puter";
 
 export const meta = () => [
-  { title: "RESUMIND | Review" },
-  { name: "descriptioin", content: "Detailed overview of your resume" },
+  {
+    title: "AI Resume Review & Insights | ResumeIQ",
+  },
+  {
+    name: "description",
+    content:
+      "Explore in-depth resume analysis including ATS score, content quality, structure, and actionable AI recommendations.",
+  },
 ];
 
 const resume = () => {
@@ -52,7 +58,9 @@ const resume = () => {
   return (
     <main className="!pt-0">
       <nav className="resume-nav">
-        <Link to="/" className="inline-flex items-center justify-center gap-2
+        <Link
+          to="/"
+          className="inline-flex items-center justify-center gap-2
           rounded-full
           bg-gradient-to-r from-purple-500 to-cyan-400
           px-5 py-2.5
@@ -62,7 +70,8 @@ const resume = () => {
           text-white
           shadow-md sm:shadow-lg
           transition-all
-          hover:scale-101 hover:shadow-xl cursor-pointer">
+          hover:scale-101 hover:shadow-xl cursor-pointer"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-4 h-4"
@@ -71,20 +80,24 @@ const resume = () => {
             stroke="currentColor"
             strokeWidth={2}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
-          <span className="text-sm font-semibold">
-            Back to Homepage
-          </span>
+          <span className="text-sm font-semibold">Back to Homepage</span>
         </Link>
       </nav>
       <div className="flex flex-row w-full max-lg:flex-col-reverse">
-        <section className="feedback-section 
+        <section
+          className="feedback-section 
   bg-[url('/images/bg-small.svg')] 
   bg-cover 
   sticky top-0 
   flex items-center justify-center
-  h-auto sm:h-[60vh] md:h-[70vh] lg:h-[100vh]">
+  h-auto sm:h-[60vh] md:h-[70vh] lg:h-[100vh]"
+        >
           {imageUrl && resumeUrl && (
             <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-wxl:h-fit w-fit">
               <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
@@ -99,7 +112,6 @@ const resume = () => {
           )}
         </section>
         <section className="feedback-section">
-          <h2 className="text-4xl !text-black font-bold">Resume Review</h2>
           {feedback ? (
             <div className="flex flex-col gap-8 animate-in fade-in duration-1000">
               <Summary feedback={feedback} />
@@ -111,7 +123,11 @@ const resume = () => {
             </div>
           ) : (
             <div className="overflow-hidden">
-              <img src="/images/resume-scan-2.gif" alt="" className="w-full relative left-4 sm:left-6 md:left-10" />
+              <img
+                src="/images/resume-scan-2.gif"
+                alt=""
+                className="w-full relative left-4 sm:left-6 md:left-10"
+              />
             </div>
           )}
         </section>

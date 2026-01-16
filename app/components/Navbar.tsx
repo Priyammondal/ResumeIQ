@@ -29,7 +29,7 @@ const Navbar = () => {
       {/* Logo */}
       <Link to="/">
         <p className="text-xl sm:text-2xl font-bold text-gradient cursor-pointer">
-          RESUMIND
+          ResumeIQ
         </p>
       </Link>
 
@@ -59,7 +59,7 @@ const Navbar = () => {
           <div ref={dropdownRef} className="relative">
             <button
               onClick={() => setShowDropdown(!showDropdown)}
-              className="flex items-center justify-center text-gray-700 hover:text-gray-900 transition-colors"
+              className="flex items-center justify-center text-gray-700 hover:text-gray-900 transition-colors cursor-pointer"
             >
               <FaUserCircle className="w-8 h-8 text-purple-500 hover:text-purple-600 transition-colors duration-300" />
             </button>

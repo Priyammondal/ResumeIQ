@@ -4,8 +4,14 @@ import { usePuterStore } from "~/lib/puter";
 import { FaUserCircle } from "react-icons/fa";
 
 export const meta = () => [
-  { title: "RESUMIND | Auth" },
-  { name: "description", content: "Log into your account" },
+  {
+    title: "Sign In to ResumeIQ",
+  },
+  {
+    name: "description",
+    content:
+      "Sign in to ResumeIQ to upload resumes, track AI feedback, and improve your chances of landing your dream job.",
+  },
 ];
 
 const Auth = () => {
@@ -34,11 +40,10 @@ const Auth = () => {
 
           {/* Header */}
           <div className="text-center flex flex-col gap-1">
-            <h1 className="text-3xl font-bold text-gray-900">
-              Welcome Back
-            </h1>
+            <h1 className="text-3xl font-bold text-gray-900">Welcome Back</h1>
             <p className="text-gray-600 text-sm sm:text-base">
-              Log in to continue your job journey and get AI-powered resume insights.
+              Log in to continue your job journey and get AI-powered resume
+              insights.
             </p>
           </div>
 
@@ -51,16 +56,16 @@ const Auth = () => {
             ) : auth.isAuthenticated ? (
               <button
                 onClick={auth.signOut}
-                className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-full font-semibold shadow-md transition-all duration-300"
+                className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-full font-semibold shadow-md transition-all duration-300 cursor-pointer"
               >
                 Log Out
               </button>
             ) : (
               <button
                 onClick={auth.signIn}
-                className="w-full bg-gradient-to-r from-purple-500 to-cyan-400 hover:from-purple-600 hover:to-cyan-500 text-white py-3 rounded-full font-semibold shadow-lg transition-transform transform hover:scale-105"
+                className="w-full bg-gradient-to-r from-purple-500 to-cyan-400 hover:from-purple-600 hover:to-cyan-500 text-white py-3 rounded-full font-semibold shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
               >
-                Log In with Provider
+                Log In
               </button>
             )}
           </div>

@@ -26,21 +26,77 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-
   const { init } = usePuterStore();
 
   useEffect(() => {
     init();
-  }, [init])
+  }, [init]);
 
   return (
     <html lang="en">
       <head>
+        {/* Basic */}
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>ResumeIQ — AI Resume Feedback & Scoring</title>
+        <meta
+          name="description"
+          content="ResumeIQ helps you improve your resume with AI-powered feedback, ATS scoring, strengths, and personalized suggestions — land your dream job faster."
+        />
+
+        {/* Favicon */}
+        <link
+          rel="icon"
+          href="https://api.iconify.design/mdi:brain.svg?color=%237c3aed"
+        />
+
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph (Facebook, LinkedIn, WhatsApp, Slack) */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ResumeIQ" />
+        <meta
+          property="og:title"
+          content="ResumeIQ — AI Resume Feedback & Scoring"
+        />
+        <meta
+          property="og:description"
+          content="Upload your resume and get instant AI-powered insights, ATS scores, and improvement tips tailored to your job role."
+        />
+        <meta property="og:image" content="https://api.iconify.design/mdi:brain.svg?color=%237c3aed" />
+        <meta
+          property="og:image:alt"
+          content="ResumeIQ AI resume analysis dashboard preview"
+        />
+
+        <meta property="og:url" content="https://resumeeiq.netlify.app" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ResumeIQ — AI Resume Feedback" />
+        <meta
+          name="twitter:description"
+          content="AI-powered resume review with ATS scoring and actionable improvement suggestions."
+        />
+        <meta name="twitter:image" content="https://api.iconify.design/mdi:brain.svg?color=%237c3aed" />
+
+        {/* Apple Touch  */}
+        <link
+          rel="apple-touch-icon"
+          href="https://api.iconify.design/mdi:brain.svg?color=%237c3aed"
+        />
+
+        <link rel="canonical" href="https://resumeeiq.netlify.app" />
+
+
+        {/* Theme (Mobile Chrome / Android) */}
+        <meta name="theme-color" content="#7C3AED" />
+
         <Meta />
         <Links />
       </head>
+
       <body>
         <script src="https://js.puter.com/v2/"></script>
         {children}

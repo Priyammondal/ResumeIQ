@@ -16,6 +16,7 @@ const ScoreBadge = ({ score }: { score: number }) => {
         px-2 sm:px-2.5
         py-0.5
         rounded-full
+        w-fit
         `,
         score > 69
           ? "bg-badge-green"
