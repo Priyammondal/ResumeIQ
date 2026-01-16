@@ -52,15 +52,39 @@ const resume = () => {
   return (
     <main className="!pt-0">
       <nav className="resume-nav">
-        <Link to="/" className="back-button">
-          <img src="/icons/back.svg" alt="logo" className="w-2.5 h-2.5" />
-          <span className="text-gray-800 text-sm font-semibold">
+        <Link to="/" className="inline-flex items-center justify-center gap-2
+          rounded-full
+          bg-gradient-to-r from-purple-500 to-cyan-400
+          px-5 py-2.5
+          sm:px-8 sm:py-3
+          text-sm sm:text-lg
+          font-semibold
+          text-white
+          shadow-md sm:shadow-lg
+          transition-all
+          hover:scale-101 hover:shadow-xl cursor-pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-4 h-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          <span className="text-sm font-semibold">
             Back to Homepage
           </span>
         </Link>
       </nav>
       <div className="flex flex-row w-full max-lg:flex-col-reverse">
-        <section className="feedback-section bg-[url('/images/bg-small.svg')] bg-cover h-[100vh] sticky top-0 items-center justify-center">
+        <section className="feedback-section 
+  bg-[url('/images/bg-small.svg')] 
+  bg-cover 
+  sticky top-0 
+  flex items-center justify-center
+  h-auto sm:h-[60vh] md:h-[70vh] lg:h-[100vh]">
           {imageUrl && resumeUrl && (
             <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-wxl:h-fit w-fit">
               <a href={resumeUrl} target="_blank" rel="noopener noreferrer">
@@ -86,7 +110,9 @@ const resume = () => {
               <Details feedback={feedback} />
             </div>
           ) : (
-            <img src="/images/resume-scan-2.gif" alt="" className="w-full" />
+            <div className="overflow-hidden">
+              <img src="/images/resume-scan-2.gif" alt="" className="w-full relative left-4 sm:left-6 md:left-10" />
+            </div>
           )}
         </section>
       </div>

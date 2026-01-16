@@ -10,27 +10,38 @@ const ScoreBadge = ({ score }: { score: number }) => {
   return (
     <div
       className={cn(
-        "flex flex-row gap-1 items-center px-2 py-0.5 rounded-[96px]",
+        `
+        flex items-center
+        gap-1 sm:gap-1.5
+        px-2 sm:px-2.5
+        py-0.5
+        rounded-full
+        `,
         score > 69
           ? "bg-badge-green"
           : score > 39
-            ? "bg-badge-yellow"
-            : "bg-badge-red"
+          ? "bg-badge-yellow"
+          : "bg-badge-red"
       )}
     >
       <img
         src={score > 69 ? "/icons/check.svg" : "/icons/warning.svg"}
         alt="score"
-        className="size-4"
+        className="size-3 sm:size-4"
       />
+
       <p
         className={cn(
-          "text-sm font-medium",
+          `
+          text-xs sm:text-sm
+          font-medium
+          whitespace-nowrap
+          `,
           score > 69
             ? "text-badge-green-text"
             : score > 39
-              ? "text-badge-yellow-text"
-              : "text-badge-red-text"
+            ? "text-badge-yellow-text"
+            : "text-badge-red-text"
         )}
       >
         {score}/100
@@ -47,8 +58,17 @@ const CategoryHeader = ({
   categoryScore: number;
 }) => {
   return (
-    <div className="flex flex-row gap-4 items-center py-2">
-      <p className="text-2xl font-semibold">{title}</p>
+    <div
+      className="
+        flex flex-col gap-2
+        sm:flex-row sm:items-center sm:gap-4
+        py-2
+      "
+    >
+      <p className="text-lg sm:text-2xl font-semibold">
+        {title}
+      </p>
+
       <ScoreBadge score={categoryScore} />
     </div>
   );
@@ -60,45 +80,42 @@ const CategoryContent = ({
   tips: { type: "good" | "improve"; tip: string; explanation: string }[];
 }) => {
   return (
-    <div className="flex flex-col gap-4 items-center w-full">
-      <div className="bg-gray-50 w-full rounded-lg px-5 py-4 grid grid-cols-2 gap-4">
+    <div className="flex flex-col gap-4 w-full">
+      {/* Quick tips */}
+      <div className="bg-gray-50 rounded-xl px-4 py-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
         {tips.map((tip, index) => (
-          <div className="flex flex-row gap-2 items-center" key={index}>
+          <div key={index} className="flex gap-2 items-start">
             <img
-              src={
-                tip.type === "good" ? "/icons/check.svg" : "/icons/warning.svg"
-              }
-              alt="score"
-              className="size-5"
+              src={tip.type === "good" ? "/icons/check.svg" : "/icons/warning.svg"}
+              className="size-4 mt-0.5"
             />
-            <p className="text-xl text-gray-500 ">{tip.tip}</p>
+            <p className="text-sm sm:text-base text-gray-600">
+              {tip.tip}
+            </p>
           </div>
         ))}
       </div>
-      <div className="flex flex-col gap-4 w-full">
+
+      {/* Detailed explanations */}
+      <div className="flex flex-col gap-3">
         {tips.map((tip, index) => (
           <div
             key={index + tip.tip}
             className={cn(
-              "flex flex-col gap-2 rounded-2xl p-4",
+              "rounded-xl p-4 flex flex-col gap-2 text-sm sm:text-base",
               tip.type === "good"
                 ? "bg-green-50 border border-green-200 text-green-700"
                 : "bg-yellow-50 border border-yellow-200 text-yellow-700"
             )}
           >
-            <div className="flex flex-row gap-2 items-center">
+            <div className="flex items-center gap-2">
               <img
-                src={
-                  tip.type === "good"
-                    ? "/icons/check.svg"
-                    : "/icons/warning.svg"
-                }
-                alt="score"
-                className="size-5"
+                src={tip.type === "good" ? "/icons/check.svg" : "/icons/warning.svg"}
+                className="size-4"
               />
-              <p className="text-xl font-semibold">{tip.tip}</p>
+              <p className="font-semibold">{tip.tip}</p>
             </div>
-            <p>{tip.explanation}</p>
+            <p className="leading-relaxed">{tip.explanation}</p>
           </div>
         ))}
       </div>
