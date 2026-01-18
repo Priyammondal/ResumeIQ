@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { usePuterStore } from "~/lib/puter";
 import { FaUserCircle } from "react-icons/fa";
 
-const Navbar = () => {
+const Navbar = ({ showUploadButton }: { showUploadButton?: boolean }) => {
   const { auth } = usePuterStore();
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -25,7 +25,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="navbar flex items-center justify-between px-4 sm:px-6 py-4 bg-white shadow-md relative z-50">
+    <nav className="navbar flex items-center justify-between px-4 sm:px-6 py-4 bg-white shadow-md relative z-50 w-[90%]">
       {/* Logo */}
       <Link to="/">
         <p className="text-xl sm:text-2xl font-bold text-gradient cursor-pointer">
@@ -36,9 +36,10 @@ const Navbar = () => {
       {/* Right Section */}
       <div className="flex items-center gap-4 relative">
         {/* Upload Button */}
-        <Link
-          to="/upload"
-          className="hidden sm:inline-flex items-center justify-center gap-2
+        {showUploadButton && (
+          <Link
+            to="/upload"
+            className="inline-flex items-center justify-center gap-2
             rounded-full
             bg-gradient-to-r from-purple-500 to-cyan-400
             px-5 py-2.5
@@ -50,9 +51,10 @@ const Navbar = () => {
             transition-all
             hover:scale-105 hover:shadow-xl
           "
-        >
-          Upload Resume
-        </Link>
+          >
+            Upload Resume
+          </Link>
+        )}
 
         {/* User Icon */}
         {auth.isAuthenticated && (

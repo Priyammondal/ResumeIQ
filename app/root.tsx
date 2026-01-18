@@ -64,7 +64,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           property="og:description"
           content="Upload your resume and get instant AI-powered insights, ATS scores, and improvement tips tailored to your job role."
         />
-        <meta property="og:image" content="/favicon.png" />
+        <meta property="og:image" content="https://resumeeiq.netlify.app/favicon.png" />
         <meta
           property="og:image:alt"
           content="ResumeIQ AI resume analysis dashboard preview"
@@ -79,7 +79,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           name="twitter:description"
           content="AI-powered resume review with ATS scoring and actionable improvement suggestions."
         />
-        <meta name="twitter:image" content="/favicon.png" />
+        <meta name="twitter:image" content="https://resumeeiq.netlify.app/favicon.png" />
 
         {/* Apple Touch  */}
         <link

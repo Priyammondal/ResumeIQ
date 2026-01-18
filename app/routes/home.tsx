@@ -2,7 +2,7 @@ import Navbar from "~/components/Navbar";
 import type { Route } from "./+types/home";
 import ResumeCard from "~/components/ResumeCard";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { usePuterStore } from "~/lib/puter";
 
 export function meta({}: Route.MetaArgs) {
@@ -20,10 +20,10 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const { auth, kv } = usePuterStore();
-  const navigate = useNavigate();
   const [resumes, setResumes] = useState<Resume[]>([]);
   const [loadingResumes, setLoadingResumes] = useState(false);
   const [refreshToken, setRefreshToken] = useState(0);
+
 
   useEffect(() => {
     const loadResumes = async () => {
@@ -39,7 +39,7 @@ export default function Home() {
       try {
         const resumes = (await kv.list("resume:*", true)) as KVItem[];
         const parsedResumes = resumes?.map(
-          (resume) => JSON.parse(resume.value) as Resume
+          (resume) => JSON.parse(resume.value) as Resume,
         );
         setResumes(parsedResumes || []);
       } catch (err) {
@@ -55,7 +55,7 @@ export default function Home() {
 
   return (
     <main className="bg-[url('/images/bg-main.svg')] bg-cover">
-      <Navbar />
+      <Navbar showUploadButton={!loadingResumes && resumes.length === 0} />
 
       <section className="main-section">
         {/* HERO */}
@@ -78,19 +78,18 @@ export default function Home() {
         {!loadingResumes && resumes.length > 0 && (
           <Link
             to="/upload"
-            className="
-    inline-flex sm:hidden
-    items-center justify-center gap-2
-    rounded-full
-    bg-gradient-to-r from-purple-500 to-cyan-400
-    px-5 py-2.5
-    text-sm
-    font-semibold
-    text-white
-    shadow-md
-    transition-all
-    hover:scale-105 hover:shadow-xl
-  "
+            className="inline-flex items-center justify-center gap-2
+                      rounded-full
+                      bg-gradient-to-r from-purple-500 to-cyan-400
+                      px-5 py-2.5
+                      sm:px-8 sm:py-3
+                      text-sm sm:text-lg
+                      font-semibold
+                      text-white
+                      shadow-md sm:shadow-lg
+                      transition-all
+                      hover:scale-105 hover:shadow-xl
+                    "
           >
             Upload Resume
           </Link>
